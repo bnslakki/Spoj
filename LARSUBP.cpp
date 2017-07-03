@@ -3,7 +3,12 @@ using namespace std;
  
 string s;
 const int mod=1e9+7;
-map<pair<int,int>,int>mp;
+struct HASH{
+  size_t operator()(const pair<int,int>&x)const{
+    return hash<long long>()(((long long)x.first)^(((long long)x.second)<<32));
+  }
+};
+unordered_map<pair<int,int>,int,HASH>mp;
 int solve(int i,int pre=-1){
 	if(i==s.length()){
 		if(pre!=-1)return 1;
